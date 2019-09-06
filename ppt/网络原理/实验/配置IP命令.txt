@@ -1,0 +1,31 @@
+实验
+  配置IP地址，并验证网络连通性
+
+模式转换
+Router>enable 从用户模式切换到特权模式
+Router#configure terminal 从特权模式切换到全局配置模式
+
+Router(config)#interface fastEthernet 0/0
+切换到接口配置模式
+Router(config-if)#ip address 192.168.1.129 255.255.255.128 接口配置IP
+Router(config-if)#no shutdown 接口激活
+
+Router(config-if)#exit 退出到上一级模式
+
+作业：将三个子网的IP分别配置到环境中，并通过ping命令，测试彼此连通性
+
+Router>show ip route 展示路由表
+Router#copy running-config startup-config
+   保存现有的配置信息
+
+路由器与路由器相连（串口）
+Router0上：
+Router(config)#interface serial 2/0
+Router(config-if)#ip address 10.0.0.1 255.255.255.0
+Router(config-if)#clock rate 64000 时钟频率设置仅在DCE的一端设置
+Router(config-if)#no shutdown 
+
+Router1上：
+Router(config)#interface serial 2/0
+Router(config-if)#ip address 10.0.0.2 255.255.255.0
+Router(config-if)#no shutdown
